@@ -1,0 +1,31 @@
+function TreeConstructor(strArr) { 
+
+  // code goes here  
+  let parents = {}; 
+  let children = {}; 
+
+  for(let i=0; i< strArr.length; i++)
+  {
+    let pair = strArr[i].replace(/[()]/g,"").split(",");
+    // (1,2) => ["1","2"] (converting code with regular expression)
+    let child = pair[0];
+    let parent = pair[1];
+
+    if(parents[parent])
+    {
+      parents[parent].push(child);
+    }else
+    {
+      parents[parent] =[child];
+    }
+    if(parents[parent].length > 2){
+      return false;
+    } else {
+      children[child] = parent;
+    }
+  }
+  return true;
+}
+   
+// keep this function call here 
+console.log(TreeConstructor(readline()));
